@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+
+<html lang="pt-br" xmlns:th="http://thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <head>
   <meta charset="UTF-8">
@@ -9,8 +10,19 @@
 </head>
 
 <body>
+  <h1>Lista de Eventos</h1>
+  <h2><a href="/createEvent">Criar Evento</a></h2>
 
-  <h3>Olá mundo com spring boot!</h3>
+  <div th:each="event : ${events}">
+    <div class="row">
+      <p><span th:text="${event.name}"></span></p>
+      <p><span th:text="${event.place}"></span></p>
+      <p><span th:text="${event.date}"></span></p>
+      <p><span th:text="${event.time}"></span></p>
+    </div>
+  </div>
+
+
 </body>
 
 </html>
