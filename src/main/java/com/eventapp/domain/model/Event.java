@@ -37,7 +37,7 @@ public class Event implements Serializable{
 	private String place;
 	
 	@NotNull
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private LocalDate date;
 	
 	@DateTimeFormat(pattern = "HH:mm")
