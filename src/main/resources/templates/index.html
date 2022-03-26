@@ -1,27 +1,47 @@
 <!DOCTYPE html>
-
-<html lang="pt-br" xmlns:th="http://thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{layout/DefaultLayout :: default-layout(~{::title}, ~{::section})}">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Event App</title>
+	<title>Event App</title>
 </head>
 
 <body>
-  <h1>Lista de Eventos</h1>
-  <h2><a href="/createEvent">Criar Evento</a></h2>
 
-  <div th:each="event : ${events}">
-    <div class="row">
-      <p><span th:text="${event.name}"></span></p>
-      <p><span th:text="${event.place}"></span></p>
-      <p><span th:text="${event.date}"></span></p>
-      <p><span th:text="${event.time}"></span></p>
-    </div>
-  </div>
+	<section class="container">
 
+		<h1>Lista de Eventos</h1>
+
+		<a th:href="@{/createEvent}" class="waves-effect waves-light btn"><i
+				class="material-icons left">add_circle_outline</i>Cadastrar Evento</a>
+
+		<div id="table-container">
+			<table>
+				<thead>
+					<tr>
+						<th>Nome do Evento</th>
+						<th>Local</th>
+						<th>Data</th>
+						<th>Horário</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:if="${#lists.isEmpty(events)}">
+						<td colspan="5" style="text-align: center;">Não existem eventos cadasatrados no momento! <a
+								th:href="@{/createEvent}">Clique aqui</a> para cadastrar um evento.</td>
+					</tr>
+					<tr th:each="event : ${events}" th:unless="${#lists.isEmpty(events)}">
+						<td><span th:text="${event.name}"></span></td>
+						<td><span th:text="${event.place}"></span></td>
+						<td><span th:text="${#temporals.format(event.date, 'dd/MM/yyyy')}"></span></td>
+						<td><span th:text="${event.time}"></span></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+	</section>
 
 </body>
 

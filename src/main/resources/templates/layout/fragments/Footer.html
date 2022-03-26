@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+	<footer class="page-footer teal lighten-2" th:fragment="layout-footer">
+		<div class="container">
+			<div class="row">
+				<div class="col l6 s12">
+					<h5 class="white-text">Event App</h5>
+					<p class="grey-text text-lighten-4">Crie seus eventos de forma rápida, simples e fácil!</p>
+				</div>
+				<div class="col l4 offset-l2 s12">
+					<h5 class="white-text">Links Úteis</h5>
+					<ul>
+						<li><a class="grey-text text-lighten-3" th:href="@{/}">Página Inicial</a></li>
+						<li><a class="grey-text text-lighten-3" th:href="@{/createEvent}">Cadastro de Eventos</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="footer-copyright teal lighten-">
+			<div class="container">
+				© 2022 Copyright Text
+			</div>
+		</div>
+	</footer>
+
+</body>
+
+</html>

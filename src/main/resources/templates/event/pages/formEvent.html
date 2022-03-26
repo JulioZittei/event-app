@@ -1,24 +1,36 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{layout/DefaultLayout :: default-layout(~{::title}, ~{::section})}">>
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cadastrar Evento - Event App</title>
+	<title>Cadastro de Eventos</title>
 </head>
 
 <body>
 
-  <h1>Cadastro de Eventos</h1>
-  <h2><a href="/">Voltar</a></h2>
-  <form action="" method="post">
-    Nome: <input type="text" value="" name="name" />
-    Local: <input type="text" value="" name="place" />
-    Data: <input type="date" pattern="dd/MM/yyyy" value="" name="date" />
-    Horário: <input type="time" value="" name="time" />
-    <button type="submit">Enviar</button>
-  </form>
+	<section class="container">
+
+		<h1>Cadastro de Eventos</h1>
+		<a th:href="@{/}" class="waves-effect waves-light btn"><i class="material-icons left">list</i>Lista de
+			Eventos</a>
+		<form action="" method="post">
+			Nome do Evento: <input type="text" value="" name="name" tabindex="1" autofocus/>
+
+			<div class="row">
+				<div class="input-field col s6">
+					Local: <input type="text" value="" name="place" tabindex="2"/>
+				</div>
+				<div class="input-field col s3">
+					Data: <input type="text"  class="datepicker" value="" name="date" tabindex="3"/>
+				</div>
+				<div class="input-field col s3">
+					Horário: <input type="text" class="timepicker" value="" name="time" tabindex="4"/>
+				</div>
+			</div>
+
+			<button type="submit" class="waves-effect waves-light btn" tabindex="5">Enviar</button>
+		</form>
+	</section>
 
 </body>
 

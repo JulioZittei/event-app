@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	th:fragment="default-layout (title, content)">
+
+<head>
+	<!--Import Google Icon Font-->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+	<!-- Compiled and minified CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title th:replace="${title}">Event App - Default</title>
+
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+	
+		body {
+			height:100vh;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+		}
+		
+		#table-container {
+			height: 250px;
+			overflow-x: scroll;
+			overflow-y: scroll;
+			margin-top: 2rem;
+		}
+
+		form {
+			margin: 2rem 0;
+		}
+		
+		footer {
+			padding: 0;
+		}
+	</style>
+</head>
+
+<body>
+
+	<div th:replace="~{layout/fragments/Header :: layout-header}"></div>
+
+	<main style="height: 500px; margin: 2rem 0;" th:insert="${content}">
+		Contéudo Principal
+	</main>
+
+	<div th:replace="~{layout/fragments/Footer :: layout-footer}"></div>
+
+	<!-- Compiled and minified JavaScript -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+		integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+	<script>
+		$(document).ready(function () {
+
+			$('.datepicker').datepicker({
+				minDate: new Date(),
+				format: 'dd/mm/yyyy',
+				showClearBtn: true,
+				i18n: {
+					defaultLocale: 'pt',
+					months: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"],
+					monthsShort: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
+					weekdays: ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"],
+					weekdaysShort: ["Dom", "Seg", "Ter", "Qua", "Qui", "Sext", "Sab"],
+					weekdaysAbbrev: ["D", "S", "T", "Q", "Q", "S", "S"],
+					clear: "Limpar",
+					cancel: "Cancel",
+					done: "Ok"
+				}
+			});
+
+			$('.timepicker').timepicker({
+				default: 'now',
+				fromNow: 0,
+				twelveHour: false,
+				showClearBtn: true,
+				i18n: {
+					clear: "Limpar",
+					cancel: "Cancel",
+					done: "Ok"
+				}
+			});
+		});
+	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+
+</html>
