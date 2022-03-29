@@ -21,7 +21,6 @@
 		}
 	
 		body {
-			height:100vh;
 			display: flex;
 			flex-direction: column;
 			justify-content: space-between;
@@ -48,7 +47,7 @@
 
 	<div th:replace="~{layout/fragments/Header :: layout-header}"></div>
 
-	<main style="height: 500px; margin: 2rem 0;" th:insert="${content}">
+	<main style="margin: 2rem 0;" th:insert="${content}">
 		Contéudo Principal
 	</main>
 
@@ -59,6 +58,8 @@
 		integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 	<script>
 		$(document).ready(function () {
+			
+			 M.AutoInit();
 
 			$('.datepicker').datepicker({
 				minDate: new Date(),
