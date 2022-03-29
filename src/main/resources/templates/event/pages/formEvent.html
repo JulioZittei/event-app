@@ -10,9 +10,9 @@
 
 	<section class="container">
 
-		<th:block th:include="~{/layout/fragments/successMessage}">
+		<th:block th:replace="~{/layout/fragments/successMessage :: success}">
 		</th:block>
-		<th:block th:include="~{/layout/fragments/errorMessage}">
+		<th:block th:replace="~{/layout/fragments/errorMessage :: error}">
 		</th:block>
 
 		<h1>Cadastro de Eventos</h1>

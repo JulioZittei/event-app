@@ -7,7 +7,7 @@
 
 <body>
 
-	<div class="alert alert-success" role="alert" th:if="${not #strings.isEmpty(success)}">
+	<div class="alert alert-success" role="alert" th:if="${not #strings.isEmpty(success)}" th:fragment="success">
 		<i class="material-icons left">check_circle</i><span th:text="${success}"></span>
 	</div> 
 
