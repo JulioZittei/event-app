@@ -16,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.eventapp.domain.model.Event;
 import com.eventapp.domain.model.Guest;
 import com.eventapp.domain.repository.EventRepository;
+import com.eventapp.domain.repository.GuestRepository;
 import com.eventapp.domain.service.CreateGuestService;
 
 @Controller
@@ -25,6 +26,9 @@ public class EventController {
 	
 	@Autowired
 	private EventRepository eventRepository;
+	
+	@Autowired
+	private GuestRepository guestRepository;
 	
 	@Autowired
 	private CreateGuestService createGuestService;
@@ -65,7 +69,7 @@ public class EventController {
 	@RequestMapping(value = "eventos/{id}", method = RequestMethod.GET)
 	public ModelAndView eventDetails(@PathVariable("id") Long id) {
 		ModelAndView mv = new ModelAndView("event/pages/eventDetails");
-		Event event = eventRepository.findByid(id);
+		Event event = eventRepository.findById(id).orElse(null);
 		mv.addObject("event", event);
 		return mv;
 	}
@@ -81,5 +85,19 @@ public class EventController {
 		return "redirect:/eventos/{id}";
 	}
 	
+	
+	@RequestMapping(value = "eventos/{id}/remove", method = RequestMethod.GET)
+	public String deleteEvent(@PathVariable("id") Long id) {
+		Event event = eventRepository.findById(id).orElse(null);
+		eventRepository.delete(event);
+		return "redirect:/eventos";
+	}
+	
+	@RequestMapping(value = "eventos/{idEvent}/convidados/{idGuest}/remove", method = RequestMethod.GET)
+	public String deleteEvent(@PathVariable("idEvent") Long idEvent, @PathVariable("idGuest") Long idGuest) {
+		Guest guest = guestRepository.findById(idGuest).orElse(null);
+		guestRepository.delete(guest);
+		return "redirect:/eventos/{idEvent}";
+	}
 
 }

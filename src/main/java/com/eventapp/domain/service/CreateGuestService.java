@@ -15,7 +15,7 @@ public class CreateGuestService {
 	
 	@Transactional
 	public void createGuest(Long id, String name, String email) {
-		Event event = eventRepository.findByid(id);
+		Event event = eventRepository.findById(id).orElse(null);
 		event.addGuest(name, email);
 	}
 	

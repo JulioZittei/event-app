@@ -41,8 +41,8 @@
 									<i class="material-icons circle">account_circle</i>
 									<span class="title" th:text="${guest.name}"></span>
 									<p th:text="${guest.email}"></p>
-									<a th:href="@{mailto:{email}(email=${guest.email})}" class="secondary-content"><i
-											class="material-icons">mail</i></a>
+									<a th:href="@{/eventos/{idEvent}/convidados/{idGuest}/remove(idEvent=${guest.event.id},idGuest=${guest.id})}" class="secondary-content"><i
+											class="material-icons">delete</i></a>
 
 								</li>
 							</ul>

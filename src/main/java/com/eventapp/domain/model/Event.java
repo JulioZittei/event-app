@@ -19,9 +19,11 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Getter
 @Setter
 @Entity
@@ -29,6 +31,7 @@ public class Event implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
+	@EqualsAndHashCode.Include
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -66,6 +69,10 @@ public class Event implements Serializable{
 		guest.setName(name);
 		guest.setEmail(email);
 		getGuests().add(guest);
+	}
+	
+	public void removeGuest(Guest guest) {
+		getGuests().remove(guest);
 	}
 	
 	
