@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+</head>
+
+<body>
+
+	<div class="alert alert-error" role="alert" th:if="${!#strings.isEmpty(error)}">
+		<i class="material-icons left">error</i><span th:text="${error}"></span>
+	</div>
+
+</body>
+
+</html>

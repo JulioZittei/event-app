@@ -10,21 +10,26 @@
 
 	<section class="container">
 
+		<th:block th:include="/layout/fragments/successMessage">
+		</th:block>
+		<th:block th:include="/layout/fragments/errorMessage">
+		</th:block>
+
 		<h1>Cadastro de Eventos</h1>
-		<a th:href="@{/eventos}"  class="waves-effect waves-light btn"><i class="material-icons left">list</i>Lista de
+		<a th:href="@{/eventos}" class="waves-effect waves-light btn"><i class="material-icons left">list</i>Lista de
 			Eventos</a>
 		<form th:action="@{/eventos/cadastro}" th:object="${event}" method="post">
-			Nome do Evento: <input type="text"  th:field="*{name}" tabindex="1" autofocus/>
+			Nome do Evento: <input type="text" th:field="*{name}" tabindex="1" autofocus />
 
 			<div class="row">
 				<div class="input-field col s6">
-					Local: <input type="text" th:field="*{place}" tabindex="2"/>
+					Local: <input type="text" th:field="*{place}" tabindex="2" />
 				</div>
 				<div class="input-field col s3">
-					Data: <input type="text"  class="datepicker" th:field="*{date}" tabindex="3"/>
+					Data: <input type="text" class="datepicker" th:field="*{date}" tabindex="3" />
 				</div>
 				<div class="input-field col s3">
-					Horário: <input type="text" class="timepicker" th:field="*{time}" tabindex="4"/>
+					Horário: <input type="text" class="timepicker" th:field="*{time}" tabindex="4" />
 				</div>
 			</div>
 

@@ -10,6 +10,11 @@
 
 	<section class="container">
 
+		<th:block th:include="/layout/fragments/successMessage">
+		</th:block>
+		<th:block th:include="/layout/fragments/errorMessage">
+		</th:block>
+
 		<h1>Evento</h1>
 		<a th:href="@{/eventos}" class="waves-effect waves-light btn"><i class="material-icons left">list</i>Lista de
 			Eventos</a>
@@ -39,7 +44,8 @@
 									<i class="material-icons circle">account_circle</i>
 									<span class="title" th:text="${guest.name}"></span>
 									<p th:text="${guest.email}"></p>
-									<a th:href="@{mailto:{email}(email=${guest.email})}" class="secondary-content"><i class="material-icons">mail</i></a>
+									<a th:href="@{mailto:{email}(email=${guest.email})}" class="secondary-content"><i
+											class="material-icons">mail</i></a>
 								</li>
 							</ul>
 						</div>

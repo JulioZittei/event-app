@@ -6,10 +6,12 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.eventapp.domain.model.Event;
 import com.eventapp.domain.model.Guest;
@@ -50,8 +52,13 @@ public class EventController {
 	
 	
 	@RequestMapping(value = "eventos/cadastro", method = RequestMethod.POST)
-	public String createEvent(@Valid Event event) {
+	public String createEvent(@Valid Event event, BindingResult result, RedirectAttributes attributes) {
+		if(result.hasErrors()) {
+			attributes.addFlashAttribute("error", "Verifique os campos!");
+			return "redirect:/eventos/cadastro";
+		}
 		eventRepository.save(event);
+		attributes.addFlashAttribute("success", "Evento Cadastrado com Sucesso!");
 		return "redirect:/eventos/cadastro";
 	}
 	
@@ -64,8 +71,13 @@ public class EventController {
 	}
 	
 	@RequestMapping(value = "eventos/{id}/convidados/cadastro", method = RequestMethod.POST)
-	public String createGuest(@PathVariable("id") Long id, @Valid Guest guest) {
+	public String createGuest(@PathVariable("id") Long id, @Valid Guest guest, BindingResult result, RedirectAttributes attributes) {
+		if(result.hasErrors()) {
+			attributes.addFlashAttribute("error", "Verifique os campos!");
+			return "redirect:/eventos/{id}";
+		}
 		createGuestService.createGuest(id, guest.getName(), guest.getEmail());
+		attributes.addFlashAttribute("success", "Convidado Cadastrado com Sucesso!");
 		return "redirect:/eventos/{id}";
 	}
 	
