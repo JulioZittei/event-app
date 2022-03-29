@@ -4,11 +4,16 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -44,11 +49,24 @@ public class Event implements Serializable{
 	@NotNull
 	private LocalTime time;
 	
-	@NotNull
-	private OffsetDateTime createdAt = this.getCreatedAt() == null ? OffsetDateTime.now() : this.getCreatedAt();
+	@OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
+	private List<Guest> guests = new ArrayList<>();
 	
 	@NotNull
+	@Column(updatable = false)
+	private OffsetDateTime createdAt = OffsetDateTime.now();
+	
+	@NotNull
+	@Column(updatable = true)
 	private OffsetDateTime updatedAt = OffsetDateTime.now();
+	
+	public void addGuest(String name, String email) {
+		Guest guest = new Guest();
+		guest.setEvent(this);
+		guest.setName(name);
+		guest.setEmail(email);
+		getGuests().add(guest);
+	}
 	
 	
 }

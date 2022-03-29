@@ -8,4 +8,5 @@ import com.eventapp.domain.model.Event;
 @Repository
 public interface EventRepository extends JpaRepository<Event, Long> {
 
+	public Event findByid(Long id);
 }
