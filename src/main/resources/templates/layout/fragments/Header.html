@@ -7,6 +7,12 @@
 		<nav>
 			<div class="nav-wrapper teal lighten-2">
 				<a th:href="@{/eventos}" class="brand-logo center">Event App</a>
+				<ul id="nav-mobile" class="right hide-on-med-and-down">
+					<li><a th:href="@{/eventos}"><i
+								class="material-icons left">event</i>Eventos</a></li>
+					<li><a th:href="@{/eventos/cadastro}"><i
+								class="material-icons left">add_circle_outline</i>Cadastrar Evento</a></li>
+				</ul>
 			</div>
 		</nav>
 	</header>

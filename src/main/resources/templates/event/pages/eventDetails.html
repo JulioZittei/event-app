@@ -3,7 +3,7 @@
 	th:replace="~{layout/DefaultLayout :: default-layout(~{::title}, ~{::section})}">>
 
 <head>
-	<title>Cadastro de Eventos</title>
+	<title th:text="${'Evento | ' + event.name}"></title>
 </head>
 
 <body>
@@ -15,21 +15,18 @@
 		<th:block th:include="/layout/fragments/errorMessage">
 		</th:block>
 
-		<h1>Evento</h1>
-		<a th:href="@{/eventos}" class="waves-effect waves-light btn"><i class="material-icons left">list</i>Lista de
-			Eventos</a>
-
 		<div class="row" style="margin-top: 20px;">
 			<div class="col s12">
 				<div class="card">
 					<div class="card-content">
 
-						<div class="row">
-							<span class="card-title" th:text="${event.name}"></span>
+						<header class="row">
+							<span class="card-title">Detalhes do Evento:</span>
+							<p><strong>Nome: </strong><span th:text="${event.name}"></span></p>
 							<p><strong>Local: </strong><span th:text="${event.place}"></span></p>
-							<p><strong>Data: </strong><span th:text="${event.date}"></span></p>
+							<p><strong>Data: </strong><span th:text="${#temporals.format(event.date, 'dd/MM/yyyy')}"></span></p>
 							<p><strong>Horário: </strong><span th:text="${event.time}"></span></p>
-						</div>
+						</header>
 					</div>
 					<div class="card-tabs">
 						<ul class="tabs tabs-fixed-width">
@@ -46,6 +43,7 @@
 									<p th:text="${guest.email}"></p>
 									<a th:href="@{mailto:{email}(email=${guest.email})}" class="secondary-content"><i
 											class="material-icons">mail</i></a>
+
 								</li>
 							</ul>
 						</div>
