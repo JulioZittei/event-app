@@ -29,7 +29,7 @@ This project was developed with the following technologies:
 
 - Clone the repository;
 - Import this project to your IDE
-- Congfigure the database connection in the file `application.properties`
+- Configure the database connection in the file `application.properties`
 
 ```
 spring.datasource.url=jdbc:postgresql://localhost:5432/eventapp?createDatabaseIfNotExist=true&serverTimezone=UTC
