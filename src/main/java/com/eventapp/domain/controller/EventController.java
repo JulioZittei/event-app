@@ -48,7 +48,7 @@ public class EventController {
 
 	@RequestMapping(value = "eventos/cadastro", method = RequestMethod.GET)
 	public ModelAndView createEventForm() {
-		ModelAndView mv = new ModelAndView("event/pages/formEvent");
+		ModelAndView mv = new ModelAndView("eventos/formEvent");
 		Event event = new Event();
 		mv.addObject("event", event);
 		return mv;
@@ -68,7 +68,7 @@ public class EventController {
 	
 	@RequestMapping(value = "eventos/{id}", method = RequestMethod.GET)
 	public ModelAndView eventDetails(@PathVariable("id") Long id) {
-		ModelAndView mv = new ModelAndView("event/pages/eventDetails");
+		ModelAndView mv = new ModelAndView("eventos/eventDetails");
 		Event event = eventRepository.findById(id).orElse(null);
 		mv.addObject("event", event);
 		return mv;

@@ -7,7 +7,7 @@
 
 <body>
 
-	<div class="alert alert-error" role="alert" th:if="${!#strings.isEmpty(error)}" th:fragment="error">
+	<div class="alert alert-error" role="alert" th:if="${!#strings.isEmpty(error)}" th:fragment="errorMessage">
 		<i class="material-icons left">error</i><span th:text="${error}"></span>
 	</div>
 

@@ -10,9 +10,9 @@
 
 	<section class="container">
 
-		<th:block th:include="~{/layout/fragments/successMessage}">
+		<th:block th:replace="~{layout/fragments/successMessage :: successMessage}">
 		</th:block>
-		<th:block th:include="~{/layout/fragments/successMessage}">
+		<th:block th:replace="~{layout/fragments/errorMessage :: errorMessage}">
 		</th:block>
 
 		<div class="row" style="margin-top: 20px;">
@@ -24,7 +24,8 @@
 							<span class="card-title">Detalhes do Evento:</span>
 							<p><strong>Nome: </strong><span th:text="${event.name}"></span></p>
 							<p><strong>Local: </strong><span th:text="${event.place}"></span></p>
-							<p><strong>Data: </strong><span th:text="${#temporals.format(event.date, 'dd/MM/yyyy')}"></span></p>
+							<p><strong>Data: </strong><span
+									th:text="${#temporals.format(event.date, 'dd/MM/yyyy')}"></span></p>
 							<p><strong>Horário: </strong><span th:text="${event.time}"></span></p>
 						</header>
 					</div>
@@ -36,13 +37,21 @@
 					</div>
 					<div class="card-content grey lighten-4">
 						<div id="test4">
-							<ul class="collection" th:each="guest : ${event.guests}">
+
+							<ul class="collection" th:if="${#lists.isEmpty(event.guests)}">
+								<li class="collection-item center">
+									Não existem convidados para este evento no momento =[
+								</li>
+							</ul>
+							
+							<ul class="collection" th:each="guest : ${event.guests}"
+								th:unless="${#lists.isEmpty(event.guests)}">
 								<li class="collection-item avatar">
 									<i class="material-icons circle">account_circle</i>
 									<span class="title" th:text="${guest.name}"></span>
 									<p th:text="${guest.email}"></p>
-									<a th:href="@{/eventos/{idEvent}/convidados/{idGuest}/remove(idEvent=${guest.event.id},idGuest=${guest.id})}" class="secondary-content"><i
-											class="material-icons">delete</i></a>
+									<a th:href="@{/eventos/{idEvent}/convidados/{idGuest}/remove(idEvent=${guest.event.id},idGuest=${guest.id})}"
+										class="secondary-content"><i class="material-icons">delete</i></a>
 
 								</li>
 							</ul>
